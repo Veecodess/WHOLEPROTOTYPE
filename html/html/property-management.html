@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/css\css\sidebar.css">
+    <link rel="stylesheet" href="/css\css\homeowner-management.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.8.0/fonts/remixicon.css" rel="stylesheet"/>
+     <script src="/js\js\unit-management.js" defer></script>
+     <script src="/js\js\homeowner-management.js" defer></script>
+</head>
+<body>
+  
+  <!-- Left Column: tabs -->
+   <aside id="sidebar" class="sidebar">
+
+    <!-- Brand -->
+     <div class="brand">
+      <h1 class="brand-title">Casa Milan HOA</h1>
+      <p class="brand-subtitle">Management Portal</p>
+      </div>
+
+    <!-- Navigation List -->
+     <nav class="navigation-list">
+
+      
+      <div class="nav-group">
+
+        <!-- Navigation Item: Community Setting-->
+        <div class="community-setting">
+          <div class="nav-item-header">
+            <i class="ri-home-4-line"></i>
+            <button class="community-setting" id="community-setting-btn">Community Settings</button>
+          </div>
+          <div class="community-setting-dropdown" id="community-setting-dropdown">
+            <a href="/html\html\homeowner-management.html"><i class="ri-database-2-line"></i>Homeowner Management</a>
+            <a href="/html\html\property-management.html"><i class="ri-database-2-line"></i>Property Management</a>
+            <a href="/html\html\family-member-approval.html"><i class="ri-database-2-line"></i>Family Member Approval</a>
+          </div>
+        </div>
+
+        <!-- Navigation Item: Community Service-->
+        <div class="community-service">
+          <div class="nav-item-header">
+            <i class="ri-group-line"></i>
+            <button class="community-service" id="community-service-btn">Community Services</button>
+          </div>
+          <div class="community-service-dropdown" id="community-service-dropdown">
+            <a href="/html\html\dues&sOA-management.html"><i class="ri-database-2-line"></i>Dues & SOA Management</a>
+            <a href="/html\html\announcement.html"><i class="ri-database-2-line"></i>Announcement</a>
+            <a href="/html\html\inquiry&message.html"><i class="ri-database-2-line"></i>Inquiry & Message</a>
+          </div>
+        </div>
+
+        <!-- Navigation Item: Amenity Service-->
+        <div class="amenity-service">
+          <div class="nav-item-header">
+            <i class="ri-calendar-check-line"></i>
+            <button class="amenity-service" id="amenity-service-btn">Amenity Services</button>
+          </div>
+          <div class="amenity-service-dropdown" id="amenity-service-dropdown">
+            <a href="/html\html\amenity-reservation.html"><i class="ri-database-2-line"></i>Amenity Reservation</a>
+            <a href="/html\html\amenity-maintenance.html"><i class="ri-database-2-line"></i>Amenity Maintenance</a>
+            <a href="/html\html\amenity-inventory.html"><i class="ri-database-2-line"></i>Amenity Inventory</a>
+            <a href="/html\html\amenity-report.html"><i class="ri-database-2-line"></i>Amenity Report</a>
+          </div>
+        </div>
+
+        <!-- Navigation Item: Account Management-->
+        <div class="account-management">
+          <div class="nav-item-header">
+            <i class="ri-user-settings-line"></i>
+            <button class="account-management" id="account-management-btn">Account Management</button>
+          </div>
+          <div class="account-management-dropdown" id="account-management-dropdown">
+            <a href="/html\html\account-credentials-notice.html"><i class="ri-database-2-line"></i>Account Credentials Notice</a>
+            <a href="/html\html\create-account.html"><i class="ri-database-2-line"></i>Create Account</a>
+          </div>
+        </div>
+
+        <!-- Navigation Item: Archive-->
+        <div class="archive">
+          <div class="nav-item-header">
+            <i class="ri-archive-line"></i>
+            <a href="/html\html\archive.html" class="archive-link" id="archive-btn">Archive</a>
+          </div>
+        </div>
+      </div>
+
+     </nav>
+   </aside>
+
+   <div class="main-content">
+    <header class="header">
+      <div class="header-actions">
+        <span class="home">Home</span>
+        <span class="dash">/</span>
+        <span class="nav">Property Management</span>
+      </div>
+
+      <!-- User Info Top Right -->
+      <div class="user-info">
+        <span class="user">Admin</span>
+      </div>
+    </header>
+
+    <!-- Work Space -->
+    <main class="workspace">
+      <div>
+
+
+      <!-- Search and Filter Bar -->
+      <div class="search-filter-bar">
+
+        <!-- Filter Lot -->
+        <div class="Lot No. Filter">
+          <label for="filter-lot" class="form-label">Lot No.:</label>
+          <input type="text" id="filter-lot" class="form-input" placeholder="Input Lot No." />
+        </div>
+
+        <!-- Filter Block -->
+        <div class="Block No. Filter">
+          <label for="filter-block" class="form-label">Block No.:</label>
+          <input type="text" id="filter-block" class="form-input" placeholder="Input Block No." />
+        </div>
+
+        <!-- Filter Homeowner -->
+        <div class="Homeowner Filter" style="display:none;">
+          <label for="filter-homeowner" class="form-label">Homeowner:</label>
+          <input type="text" id="filter-homeowner" class="form-input" placeholder="Input Homeowner Name." />
+        </div>
+
+        <!-- Search Button -->
+        <div class="Search Button">
+          <button class="clear-btn" id="clear-btn">Clear</button>
+          <button class="search-btn" id="search-btn">Search</button>
+        </div>
+      </div>
+
+      <div class="property-bulk-actions">
+        <button class="delete-selected-btn" id="delete-selected-unit-btn" type="button" hidden>Delete</button>
+      </div>
+     
+
+      <!-- Table Container -->
+      <div class="table-container">
+        <table class="homeowner-table">
+
+          <!-- Table Header -->
+          <thead>
+            <tr class="table-header">
+              <th><input type="checkbox" id="select-all" /></th>
+              <th>#</th>
+              <th>Block No.</th>
+              <th>Lot No.</th>
+              <th>Address</th>
+              <th>Homeowner</th>
+              <th>Outstanding Balance</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody id="unit-table-body">
+            <!-- Table rows will be dynamically generated here -->
+          </tbody>
+        </table>
+      </div>
+
+      </div>
+    </main>
+  </div>
+
+
+<!-- Unit Details Modal -->
+<div class="modal-overlay" id="unit-detail-modal-overlay">
+  <div class="unit-detail-modal">
+    
+    <!-- 頂部深綠色標題列 (與 Homeowner Detail 一致) -->
+    <div class="unit-detail-title-bar">
+      <h3 id="unit-modal-title">No.17 Universita St. Blk 135 Lot 15</h3>
+      <button type="button" class="unit-modal-close" id="unit-modal-close-btn">&times;</button>
+    </div>
+
+    <!-- 可獨立滾動的內容主體 -->
+    <div class="unit-detail-body">
+      
+      <!-- 1. Homeowner 區塊 -->
+      <div class="unit-section-header">
+        <h4 class="unit-section-title">Homeowner</h4>
+      </div>
+      <div class="unit-card-table-wrap">
+        <table class="unit-inner-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Relationship</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="unit-homeowner-list">
+        </table>
+      </div>
+
+      <!-- 2. Billing History 區塊 -->
+      <div class="unit-section-header mt-4">
+        <h4 class="unit-section-title">Billing History</h4>
+      </div>
+      <div class="unit-card-table-wrap">
+        <table class="unit-inner-table text-center-table">
+          <thead>
+            <tr>
+              <th>Billing Period</th>
+              <th>Payment Date</th>
+              <th>Amount</th>
+              <th>Payment Type</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="unit-billing-list"></tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+    </div>
+</body>
+</html>

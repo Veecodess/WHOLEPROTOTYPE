@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Announcements | Casa Milan Homeowner Portal</title>
+	<link rel="stylesheet" href="../../css/css/homeownerpage.css">
+
+</head>
+<body>
+	<header class="topbar">
+		<div class="topbar-inner">
+			<div class="brand" aria-label="Casa Milan Homeowner's Portal">
+				<div class="brand-name">Casa Milan</div>
+				<div class="brand-subtitle">Homeowner's Portal</div>
+			</div>
+			<div class="account">
+				<span class="icon-button" aria-label="Notifications">
+					<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg>
+					<span class="notification-dot"></span>
+				</span>
+				<span class="avatar" aria-hidden="true">
+					<svg viewBox="0 0 20 20" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="6.5" r="3"/><path d="M4.5 16c.5-3 2.5-4.5 5.5-4.5s5 1.5 5.5 4.5"/></svg>
+				</span>
+				<span>Joe Doe</span>
+				<span class="logout" id="logoutBtn" aria-label="Sign out">
+					<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M10 4H5v16h5M14 8l4 4-4 4M8 12h10"/></svg>
+				</span>
+			</div>
+		</div>
+	</header>
+
+	<nav class="main-nav" aria-label="Main navigation">
+		<div class="nav-inner">
+			<a class="nav-link" href="#home">
+				<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m3 10 9-7 9 7v10H3z"/><path d="M9 20v-7h6v7"/></svg>
+				Home
+			</a>
+			<details class="nav-dropdown">
+				<summary class="nav-link community active">
+					<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="9" cy="7" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2M16 4a3 3 0 0 1 0 6M18 14a5 5 0 0 1 3 4v2"/></svg>
+					Community
+					<svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m3 6 5 5 5-5"/></svg>
+				</summary>
+				<div class="nav-menu">
+					<a href="reservation.html">Reservation Page</a>
+					<a href="statement-of-account.html">Statement of Account</a>
+				</div>
+			</details>
+		</div>
+	</nav>
+
+	<main id="announcements">
+		<div class="page-heading">
+			<h1>Announcement</h1>
+			<p class="intro">View important community announcements and personal notifications, including mail collection, feedback responses, and group purchase updates.</p>
+		</div>
+
+		<section class="announcement-panel" aria-label="Community announcements">
+			<div class="tabs" role="tablist" aria-label="Announcement categories">
+				<button class="tab" type="button" role="tab" aria-selected="false" data-filter="all">All</button>
+				<button class="tab" type="button" role="tab" aria-selected="true" data-filter="community">Community Announcement</button>
+				<button class="tab" type="button" role="tab" aria-selected="false" data-filter="personal">personalized notifications</button>
+			</div>
+
+			<div class="announcement-list">
+				<article class="announcement" data-category="community">
+					<div class="announcement-body">
+						<span class="badge">Emergency</span>
+						<h2>Notice of power outage in the community due to annual high-voltage equipment maintenance</h2>
+						<p>Dear Residents, To ensure the safety of electricity use in the community, annual high-voltage equipment inspection and maintenance will be carried out from 9:00 AM to 4:00 PM on Monday, the 20th of this month. During this time, the...</p>
+					</div>
+					<div class="byline">Posted by: Mechanical and Electrical Group of the Management Committee</div>
+				</article>
+				<article class="announcement" data-category="community">
+					<div class="announcement-body">
+						<span class="badge">Emergency</span>
+						<h2>Notice of power outage in the community due to annual high-voltage equipment maintenance</h2>
+						<p>Dear Residents, To ensure the safety of electricity use in the community, annual high-voltage equipment inspection and maintenance will be carried out from 9:00 AM to 4:00 PM on Monday, the 20th of this month. During this time, the...</p>
+					</div>
+					<div class="byline">Posted by: Mechanical and Electrical Group of the Management Committee</div>
+				</article>
+				<article class="announcement" data-category="community">
+					<div class="announcement-body">
+						<span class="badge">Emergency</span>
+						<h2>Notice of power outage in the community due to annual high-voltage equipment maintenance</h2>
+						<p>Dear Residents, To ensure the safety of electricity use in the community, annual high-voltage equipment inspection and maintenance will be carried out from 9:00 AM to 4:00 PM on Monday, the 20th of this month. During this time, the...</p>
+					</div>
+					<div class="byline">Posted by: Mechanical and Electrical Group of the Management Committee</div>
+				</article>
+			</div>
+			<div class="empty-state" role="status">No personalized notifications yet.</div>
+		</section>
+	</main>
+
+	<button class="chat-button" type="button" aria-label="Text Admin">
+		<svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M10 2.5c-4.1 0-7.5 2.7-7.5 6.1 0 1.6.8 3 2.1 4.1l-.8 3 3.3-1.4c.9.3 1.9.5 2.9.5 4.1 0 7.5-2.7 7.5-6.1S14.1 2.5 10 2.5Zm-3.3 7a.9.9 0 1 1 0-1.8.9.9 0 0 1 0 1.8Zm3.3 0a.9.9 0 1 1 0-1.8.9.9 0 0 1 0 1.8Zm3.3 0a.9.9 0 1 1 0-1.8.9.9 0 0 1 0 1.8Z"/></svg>
+		Text Admin
+		<span class="chat-dot"></span>
+	</button>
+
+	<script>
+		const tabs = document.querySelectorAll('.tab');
+		const announcements = document.querySelectorAll('.announcement');
+		const emptyState = document.querySelector('.empty-state');
+
+		tabs.forEach((tab) => {
+			tab.addEventListener('click', () => {
+				const filter = tab.dataset.filter;
+				let visibleCount = 0;
+
+				tabs.forEach((item) => item.setAttribute('aria-selected', String(item === tab)));
+				announcements.forEach((announcement) => {
+					const visible = filter === 'all' || announcement.dataset.category === filter;
+					announcement.hidden = !visible;
+					if (visible) visibleCount += 1;
+				});
+				emptyState.style.display = visibleCount ? 'none' : 'block';
+			});
+		});
+
+		// Logout button with confirmation
+const logoutBtn = document.getElementById('logoutBtn');
+
+if (logoutBtn) {
+    logoutBtn.addEventListener('click', () => {
+        // Create a custom confirmation box
+        const confirmBox = document.createElement('div');
+        confirmBox.style.position = 'fixed';
+        confirmBox.style.top = '50%';
+        confirmBox.style.left = '50%';
+        confirmBox.style.transform = 'translate(-50%, -50%)';
+        confirmBox.style.background = '#fff';
+        confirmBox.style.padding = '20px';
+        confirmBox.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
+        confirmBox.style.zIndex = '1000';
+        confirmBox.innerHTML = `
+            <p>Are you sure you want to log out?</p>
+            <button id="yesBtn">Yes</button>
+            <button id="noBtn">No</button>
+        `;
+        document.body.appendChild(confirmBox);
+
+        // Handle Yes / No
+        document.getElementById('yesBtn').addEventListener('click', () => {
+            window.location.href = "Login.html"; // ✅ Redirect
+        });
+        document.getElementById('noBtn').addEventListener('click', () => {
+            document.body.removeChild(confirmBox); // Close popup
+        });
+    });
+}
+
+    
+	</script>
+</body>
+</html>

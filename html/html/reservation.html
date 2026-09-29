@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guest Reservation | Casa Milan</title>
+    <link rel="stylesheet" href="../../css/css/style.css">
+</head>
+<body class="reservation-page-body">
+    <nav>
+        <a href="index.html#home" class="logo" aria-label="Casa Milan home">
+            <img src="images/logo.png" alt="Casa Milan Homeowner's Association">
+            <span>Casa Milan<br>Homeowner's Association</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html#home">Home</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#events">Announcements</a>
+            <a href="index.html#amenities">Amenities</a>
+            <a href="contacts.html">Contact</a>
+            <a href="index.html#login">Log In</a>
+        </div>
+    </nav>
+
+    <main class="reservation-page">
+        <section class="reservation-panel" aria-labelledby="reservation-title">
+            <div class="reservation-heading">
+                <p class="reservation-eyebrow">Casa Milan Guest Reservation</p>
+                <h1 id="reservation-title">Book as a Guest</h1>
+                <p>Enter your information and our team will contact you about your reservation.</p>
+                <p id="selected-amenity" class="selected-amenity" hidden></p>
+            </div>
+
+            <form class="reservation-form" action="guestschedule.html" method="get">
+                <input id="amenity-name" name="Amenity" type="hidden">
+                <div id="amenity-select-field" class="reservation-field reservation-field-email" hidden>
+                    <label for="amenity-select">Amenity</label>
+                    <select id="amenity-select" name="Amenity" required>
+                        <option value="">Select an amenity</option>
+                        <option value="Swimming Pool">Swimming Pool</option>
+                        <option value="Volleyball Court">Volleyball Court</option>
+                        <option value="Badminton Court">Badminton Court</option>
+                        <option value="Basketball Court">Basketball Court</option>
+                    </select>
+                </div>
+                <div id="venue-type-field" class="reservation-field reservation-field-email" hidden>
+                    <label for="venue-type">Venue Type</label>
+                    <select id="venue-type" name="Venue Type" required>
+                        <option value="">Select a venue type</option>
+                        <option value="Taraflex">Taraflex</option>
+                        <option value="Concrete">Concrete</option>
+                        <option value="Semi-taraflex">Semi-taraflex</option>
+                        <option value="Table tennis">Table tennis</option>
+                    </select>
+                </div>
+                <div class="reservation-field">
+                    <label for="last-name">Last Name</label>
+                    <input id="last-name" name="Last Name" type="text" required>
+                </div>
+                <div class="reservation-field">
+                    <label for="first-name">First Name</label>
+                    <input id="first-name" name="First Name" type="text" required>
+                </div>
+                <div class="reservation-field">
+                    <label for="middle-name">Middle Name</label>
+                    <input id="middle-name" name="Middle Name" type="text">
+                </div>
+                <div class="reservation-field">
+                    <label for="contact-number">Contact Number</label>
+                    <input id="contact-number" name="Contact Number" type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="15" autocomplete="tel" required>
+                </div>
+                <div class="reservation-field reservation-field-email">
+                    <label for="email">Email Address</label>
+                    <input id="email" name="Email Address" type="email" required>
+                </div>
+                <a class="reservation-back" href="index.html#home">Back</a>
+                <button class="reservation-submit" type="submit">Next</button>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        const amenityNames = {
+            pool: 'Swimming Pool',
+            volleyball: 'Volleyball Court',
+            badminton: 'Badminton Court',
+            basketball: 'Basketball Court'
+        };
+        const requestedAmenity = new URLSearchParams(window.location.search).get('amenity');
+        const amenityName = amenityNames[requestedAmenity];
+        const venueTypeField = document.getElementById('venue-type-field');
+        const venueTypeSelect = document.getElementById('venue-type');
+        const amenityNameInput = document.getElementById('amenity-name');
+        const amenitySelectField = document.getElementById('amenity-select-field');
+        const amenitySelect = document.getElementById('amenity-select');
+
+        const updateVenueType = (selectedAmenity) => {
+            const isBadminton = selectedAmenity === 'Badminton Court';
+            venueTypeField.hidden = !isBadminton;
+            venueTypeSelect.disabled = !isBadminton;
+            if (!isBadminton) venueTypeSelect.value = '';
+        };
+
+        if (amenityName) {
+            amenityNameInput.value = amenityName;
+            amenitySelect.value = amenityName;
+            amenitySelect.disabled = true;
+            const selectedAmenity = document.getElementById('selected-amenity');
+            selectedAmenity.textContent = `You are booking: ${amenityName}`;
+            selectedAmenity.hidden = false;
+            updateVenueType(amenityName);
+        } else {
+            amenitySelectField.hidden = false;
+            amenityNameInput.disabled = true;
+            amenitySelect.addEventListener('change', () => {
+                amenityNameInput.value = amenitySelect.value;
+                updateVenueType(amenitySelect.value);
+            });
+        }
+
+        document.querySelector('nav').addEventListener('click', (event) => {
+            const link = event.target.closest('a');
+            if (!link) return;
+            if (!window.confirm('Leave reservation? Your progress will be lost, and your reservation will not be completed.')) {
+                event.preventDefault();
+            }
+        });
+
+        const contactNumberInput = document.getElementById('contact-number');
+        contactNumberInput.addEventListener('input', () => {
+            contactNumberInput.value = contactNumberInput.value.replace(/\D/g, '').slice(0, 15);
+        });
+    </script>
+</body>
+</html>

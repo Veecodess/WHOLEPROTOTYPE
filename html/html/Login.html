@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/css\css\Casa_Milan.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="/js\js\Login.js" defer></script>
+    
+</head>
+<body>
+
+  <div class="split-layout">
+    <!-- Left Column: Login Form -->
+    <main class="form-pane">
+      <div class="form-container">
+        <h1 class="page-title">Log In</h1>
+
+        <form action="#" method="POST" autocomplete="off" id="loginForm">
+          
+          <!-- Account Field -->
+          <div class="input-group">
+            <label for="account">Account</label>
+            <input type="email" id="account" name="account" required />
+          </div>
+
+          <!-- Password Field -->
+          <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required />
+          </div>
+
+          <!-- QR Code Option -->
+          <a href="#" class="qr-login-link">
+            <!-- Inline SVG QR Icon -->
+            <svg class="qr-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M2 2h8v8H2V2zm2 2v4h4V4H4zm10-2h8v8h-8V2zm2 2v4h4V4h-4zM2 14h8v8H2v-8zm2 2v4h4v-4H4zm14 0h-4v2h2v4h2v-6zm0 6h4v-2h-4v2zm-2-4h-2v2h2v-2zm-2-2h2v2h-2v-2zm6-2h-2v2h2v-2zM5 5h2v2H5V5zm12 0h2v2h-2V5zM5 17h2v2H5v-2z"/>
+            </svg>
+            <span>Login with QR code</span>
+          </a>
+
+          <!-- Submit Button -->
+          <button type="submit" class="submit-btn">Login</button>
+
+          <!-- Footer Options -->
+          <div class="form-footer">
+            <label class="remember-me">
+              <input type="checkbox" name="remember" />
+              <span class="custom-checkbox"></span>
+              <span class="label-text">Remember me</span>
+            </label>
+            <a href="forgot_password.html" class="forgot-link">Forgot password</a>
+          </div>
+
+        </form>
+      </div>
+    </main>
+
+    <!-- Right Column: Casa Milan Image -->
+    <aside class="image-pane" aria-label="Casa Milan gate photo"></aside>
+  </div>
+
+</body>
+</html>

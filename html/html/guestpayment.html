@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Payment | Casa Milan</title>
+	<link rel="stylesheet" href="../../css/css/style.css">
+</head>
+<body class="payment-page-body">
+	<nav>
+		<a href="index.html#home" class="logo" aria-label="Casa Milan home">
+			<img src="images/logo.png" alt="Casa Milan Homeowner's Association">
+			<span>Casa Milan<br>Homeowner's Association</span>
+		</a>
+		<div class="nav-links">
+			<a href="index.html#home">Home</a>
+			<a href="index.html#about">About</a>
+			<a href="index.html#events">Announcements</a>
+			<a href="index.html#amenities">Amenities</a>
+			<a href="contacts.html">Contact</a>
+			<a href="index.html#login">Log In</a>
+		</div>
+	</nav>
+
+	<main class="payment-page">
+		<header class="payment-header">
+			<a class="schedule-header-back" href="guestschedule.html" aria-label="Back to schedule">&#8592;</a>
+			<div>
+				<h1>Payment</h1>
+				<p>Review your booking and choose a payment method</p>
+			</div>
+		</header>
+
+		<div class="payment-layout">
+			<section class="booking-summary" aria-labelledby="summary-title">
+				<h2 id="summary-title">Booking Summary</h2>
+				<div class="summary-row"><span>Amenity</span><strong id="summary-amenity"></strong></div>
+				<div id="summary-venue-row" class="summary-row" hidden><span>Venue Type</span><strong id="summary-venue"></strong></div>
+				<div class="summary-row"><span>Date</span><strong id="summary-date"></strong></div>
+				<div class="summary-row"><span>Time</span><strong id="summary-time"></strong></div>
+				<div class="summary-row"><span>Duration</span><strong id="summary-duration"></strong></div>
+				<label id="pool-guests-field" class="payment-field" for="pool-guests" hidden>
+					<span>Number of Guests</span>
+					<input id="pool-guests" type="number" min="1" max="50" value="1">
+				</label>
+				<label id="pool-option-field" class="payment-field" for="pool-option" hidden>
+					<span>Pool Option</span>
+					<select id="pool-option">
+						<option value="250">Pool access - PHP 250 / pax</option>
+						<option value="500">With chairs and tables - PHP 500 / pax</option>
+					</select>
+				</label>
+				<div class="summary-total"><span>Total Amount</span><strong id="summary-total"></strong></div>
+			</section>
+
+			<form id="payment-form" class="payment-methods" action="success.html" method="get">
+				<input id="amenity" name="Amenity" type="hidden">
+				<input id="venue-type" name="Venue Type" type="hidden">
+				<input id="reservation-date" name="Reservation Date" type="hidden">
+				<input id="reservation-time" name="Reservation Time" type="hidden">
+				<input id="duration" name="Duration" type="hidden">
+				<input id="amount" name="Total Amount" type="hidden">
+				<input id="last-name" name="Last Name" type="hidden">
+				<input id="first-name" name="First Name" type="hidden">
+				<input id="middle-name" name="Middle Name" type="hidden">
+				<input id="contact-number" name="Contact Number" type="hidden">
+				<input id="email" name="Email Address" type="hidden">
+
+				<h2>Payment Method</h2>
+				<div class="payment-method-options">
+					<label class="payment-method-option">
+						<input type="radio" name="Payment Method" value="Bank Account" checked>
+						<span>Bank Account</span>
+					</label>
+					<label class="payment-method-option">
+						<input type="radio" name="Payment Method" value="GCash">
+						<span>GCash</span>
+					</label>
+				</div>
+
+				<div id="payment-qr-details" class="payment-details">
+					<h3 id="payment-qr-title">Eastwest Bank Account QR</h3>
+					<div class="sample-qr-art" role="img" aria-label="Decorative sample QR code. It is not scannable.">
+						<span class="sample-qr-finder"></span>
+						<span class="sample-qr-finder"></span>
+						<span class="sample-qr-finder"></span>
+					</div>
+					<p class="sample-qr-label">SAMPLE QR CODE - NOT SCANNABLE</p>
+					<p id="payment-qr-note" class="payment-note">This is a demo bank transfer QR. No payment will be processed.</p>
+				</div>
+
+				<button class="payment-submit" type="submit">Pay <span id="pay-amount"></span></button>
+			</form>
+		</div>
+	</main>
+
+	<script>
+		const query = new URLSearchParams(window.location.search);
+		const amenity = query.get('Amenity') || 'Amenity Reservation';
+		const venueType = query.get('Venue Type') || '';
+		const dateValue = query.get('Reservation Date') || '';
+		const timeValue = query.get('Reservation Time') || '';
+		const durationValue = Number(query.get('Duration')) || 1;
+		const rates = {
+			'Swimming Pool': { label: 'Pool access', rate: 250, unit: 'per guest' },
+			'Volleyball Court': { label: 'Court with lights', rate: 1000, unit: 'per hour' },
+			'Badminton Court': {
+				Taraflex: { label: 'Taraflex flooring', rate: 300, unit: 'per hour' },
+				Concrete: { label: 'Concrete flooring', rate: 150, unit: 'per hour' },
+				'Semi-taraflex': { label: 'Semi-taraflex flooring', rate: 250, unit: 'per hour' },
+				'Table tennis': { label: 'Table tennis', rate: 200, unit: 'per hour' }
+			},
+			'Basketball Court': { label: 'Court with lights', rate: 1800, unit: 'per hour' },
+			'Main Hall': { label: 'Main Hall rental', rate: 30000, unit: 'fixed rate', fixed: true }
+		};
+
+		const formatAmount = (amount) => `PHP ${amount.toLocaleString('en-PH')}`;
+		const formatDate = (value) => value ? new Date(`${value}T00:00:00`).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'Not selected';
+		const formatTimeRange = (value) => {
+			if (!value) return 'Not selected';
+			const start = new Date(`2000-01-01T${value}`);
+			const end = new Date(start);
+			end.setHours(end.getHours() + durationValue);
+			const formatTime = (time) => time.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+			return `${formatTime(start)} - ${formatTime(end)}`;
+		};
+		const getRate = () => {
+			if (amenity === 'Badminton Court') return rates[amenity][venueType] || rates[amenity].Concrete;
+			return rates[amenity] || rates['Swimming Pool'];
+		};
+
+		const amenityRate = getRate();
+		const summaryTotal = document.getElementById('summary-total');
+		const payAmount = document.getElementById('pay-amount');
+		const amountInput = document.getElementById('amount');
+		const poolGuestsField = document.getElementById('pool-guests-field');
+		const poolOptionField = document.getElementById('pool-option-field');
+		const poolGuests = document.getElementById('pool-guests');
+		const poolOption = document.getElementById('pool-option');
+
+		document.getElementById('summary-amenity').textContent = amenity;
+		document.getElementById('summary-date').textContent = formatDate(dateValue);
+		document.getElementById('summary-time').textContent = formatTimeRange(timeValue);
+		document.getElementById('summary-duration').textContent = amenityRate.fixed ? amenityRate.unit : `${durationValue} ${durationValue === 1 ? 'hour' : 'hours'}`;
+		document.getElementById('amenity').value = amenity;
+		document.getElementById('venue-type').value = venueType;
+		document.getElementById('reservation-date').value = dateValue;
+		document.getElementById('reservation-time').value = timeValue;
+		document.getElementById('duration').value = durationValue;
+
+		if (venueType) {
+			document.getElementById('summary-venue').textContent = venueType;
+			document.getElementById('summary-venue-row').hidden = false;
+		}
+
+		const guestFields = {
+			'Last Name': 'last-name',
+			'First Name': 'first-name',
+			'Middle Name': 'middle-name',
+			'Contact Number': 'contact-number',
+			'Email Address': 'email'
+		};
+		Object.entries(guestFields).forEach(([name, fieldId]) => {
+			document.getElementById(fieldId).value = query.get(name) || '';
+		});
+
+		if (amenity === 'Swimming Pool') {
+			poolGuestsField.hidden = false;
+			poolOptionField.hidden = false;
+		}
+
+		const updateTotal = () => {
+			let total = amenityRate.fixed ? amenityRate.rate : amenityRate.rate * durationValue;
+			if (amenity === 'Swimming Pool') total = Number(poolOption.value) * Number(poolGuests.value || 1);
+			summaryTotal.textContent = formatAmount(total);
+			payAmount.textContent = formatAmount(total);
+			amountInput.value = formatAmount(total);
+		};
+
+		poolGuests.addEventListener('input', updateTotal);
+		poolOption.addEventListener('change', updateTotal);
+		updateTotal();
+
+		const paymentQrTitle = document.getElementById('payment-qr-title');
+		const paymentQrNote = document.getElementById('payment-qr-note');
+		document.querySelector('nav').addEventListener('click', (event) => {
+			const link = event.target.closest('a');
+			if (!link) return;
+			if (!window.confirm('Leave reservation? Your progress will be lost, and your reservation will not be completed.')) {
+				event.preventDefault();
+			}
+		});
+
+		document.querySelectorAll('input[name="Payment Method"]').forEach((method) => {
+			method.addEventListener('change', () => {
+				if (!method.checked) return;
+				paymentQrTitle.textContent = `${method.value} QR`;
+				paymentQrNote.textContent = `This is a demo ${method.value} QR. No payment will be processed.`;
+			});
+		});
+	</script>
+</body>
+</html>

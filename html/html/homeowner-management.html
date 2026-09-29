@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/css\css\sidebar.css">
+    <link rel="stylesheet" href="/css\css\homeowner-management.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.8.0/fonts/remixicon.css" rel="stylesheet"/>
+     <script src="/js\js\homeowner-management.js" defer></script>
+     <script src="/js\js\sidebar-loader.js" defer></script>
+</head>
+<body>
+  <!-- Left Column: tabs -->
+   <aside id="sidebar" class="sidebar">
+
+    <!-- Brand -->
+     <div class="brand">
+      <h1 class="brand-title">Casa Milan HOA</h1>
+      <p class="brand-subtitle">Management Portal</p>
+      </div>
+
+    <!-- Navigation List -->
+     <nav class="navigation-list">
+
+      
+      <div class="nav-group">
+
+        <!-- Navigation Item: Community Setting-->
+        <div class="community-setting">
+          <div class="nav-item-header">
+            <i class="ri-home-4-line"></i>
+            <button class="community-setting" id="community-setting-btn">Community Settings</button>
+          </div>
+          <div class="community-setting-dropdown" id="community-setting-dropdown">
+            <a href="/html\html\homeowner-management.html"><i class="ri-database-2-line"></i>Homeowner Management</a>
+            <a href="/html\html\property-management.html"><i class="ri-database-2-line"></i>Property Management</a>
+            <a href="/html\html\family-member-approval.html"><i class="ri-database-2-line"></i>Family Member Approval</a>
+          </div>
+        </div>
+
+        <!-- Navigation Item: Community Service-->
+        <div class="community-service">
+          <div class="nav-item-header">
+            <i class="ri-group-line"></i>
+            <button class="community-service" id="community-service-btn">Community Services</button>
+          </div>
+          <div class="community-service-dropdown" id="community-service-dropdown">
+            <a href="/html\html\dues&sOA-management.html"><i class="ri-database-2-line"></i>Dues & SOA Management</a>
+            <a href="/html\html\announcement.html"><i class="ri-database-2-line"></i>Announcement</a>
+            <a href="/html\html\inquiry&message.html"><i class="ri-database-2-line"></i>Inquiry & Message</a>
+          </div>
+        </div>
+
+        <!-- Navigation Item: Amenity Service-->
+        <div class="amenity-service">
+          <div class="nav-item-header">
+            <i class="ri-calendar-check-line"></i>
+            <button class="amenity-service" id="amenity-service-btn">Amenity Services</button>
+          </div>
+          <div class="amenity-service-dropdown" id="amenity-service-dropdown">
+            <a href="/html\html\amenity-reservation.html"><i class="ri-database-2-line"></i>Amenity Reservation</a>
+            <a href="/html\html\amenity-maintenance.html"><i class="ri-database-2-line"></i>Amenity Maintenance</a>
+            <a href="/html\html\amenity-inventory.html"><i class="ri-database-2-line"></i>Amenity Inventory</a>
+            <a href="/html\html\amenity-report.html"><i class="ri-database-2-line"></i>Amenity Report</a>
+          </div>
+        </div>
+
+        <!-- Navigation Item: Account Management-->
+        <div class="account-management">
+          <div class="nav-item-header">
+            <i class="ri-user-settings-line"></i>
+            <button class="account-management" id="account-management-btn">Account Management</button>
+          </div>
+          <div class="account-management-dropdown" id="account-management-dropdown">
+            <a href="/html\html\account-credentials-notice.html"><i class="ri-database-2-line"></i>Account Credentials Notice</a>
+            <a href="/html\html\create-account.html"><i class="ri-database-2-line"></i>Create Account</a>
+          </div>
+        </div>
+
+        <!-- Navigation Item: Archive-->
+        <div class="archive">
+          <div class="nav-item-header">
+            <i class="ri-archive-line"></i>
+            <a href="/html\html\archive.html" class="archive-link" id="archive-btn">Archive</a>
+          </div>
+        </div>
+      </div>
+
+     </nav>
+   </aside>
+  <div id="sidebar-container"></div>
+
+   <div class="main-content">
+    <header class="header">
+      <div class="header-actions">
+        <span class="home">Home</span>
+        <span class="dash">/</span>
+        <span class="nav">Homeowner Management</span>
+      </div>
+
+      <!-- User Info Top Right -->
+      <div class="user-info">
+        <button type="button" class="user" id="admin-toggle">Admin</button>
+
+            <div class="profile-modal" id="profile-modal">
+              <div class="profile-option">
+                <i class="ri-user-line"></i>
+                <span>Personal Information</span>
+            </div>
+            <div class="profile-option">
+              <i class="ri-lock-password-line"></i>
+              <span>Change Password</span>
+          </div>
+        <div class="profile-divider"></div>
+        <button type="button" class="logout-btn" id="logout-btn">
+            <i class="ri-logout-box-r-line"></i>
+            <span>Log out</span>
+        </button>
+      </div>
+          
+        
+
+
+
+
+      </div>
+    </header>
+
+    <!-- Work Space -->
+    <main class="workspace">
+      <div>
+
+
+      <!-- Search and Filter Bar -->
+      <div class="search-filter-bar">
+
+        <!-- Filter Lot -->
+        <div class="Lot No. Filter">
+          <label for="filter-lot" class="form-label">Lot No.:</label>
+          <input type="text" id="filter-lot" class="form-input" placeholder="Input Lot No." />
+        </div>
+
+        <!-- Filter Block -->
+        <div class="Block No. Filter">
+          <label for="filter-block" class="form-label">Block No.:</label>
+          <input type="text" id="filter-block" class="form-input" placeholder="Input Block No." />
+        </div>
+
+        <!-- Filter Homeowner -->
+        <div class="Homeowner Filter">
+          <label for="filter-homeowner" class="form-label">Homeowner:</label>
+          <input type="text" id="filter-homeowner" class="form-input" placeholder="Input Homeowner Name." />
+        </div>
+
+        <!-- Search Button -->
+        <div class="Search Button">
+          <button class="clear-btn" id="clear-btn">Clear</button>
+          <button class="search-btn" id="search-btn">Search</button>
+        </div>
+      </div>
+
+      <!-- Action Buttons Row-->
+      <div class="action-buttons-row">
+        <div class="import-homeowner-data">
+          <button class="add-btn" id="add-btn">Add New Homeowner</button>
+          <button class="import-btn" id="import-btn">Import Homeowner</button>
+          <button class="delete-selected-btn" id="delete-selected-btn" type="button" hidden>Delete</button>
+        </div>
+
+        <div class="Generate-homeowner-data">
+          <button class="generate-btn" id="generate-btn">Generate Homeowner Data</button>
+        </div> 
+      </div>
+
+      <!-- Table Container -->
+      <div class="table-container">
+        <table class="homeowner-table">
+
+          <!-- Table Header -->
+          <thead>
+            <tr class="table-header">
+              <th><input type="checkbox" id="select-all" /></th>
+              <th>#</th>
+              <th>Block No.</th>
+              <th>Lot No.</th>
+              <th>Address</th>
+              <th>First Name</th>
+              <th>Middle Name</th>
+              <th>Last Name</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody id="homeowner-table-body">
+            <!-- Table rows will be dynamically generated here -->
+          </tbody>
+        </table>
+      </div>
+
+      </div>
+    </main>
+  </div>
+
+  
+  <!-- Add Homeowner Modal -->
+<div class="modal-overlay" id="add-homeowner-modal-overlay">
+  <div class="add-homeowner-modal">
+    
+    <!-- Green Title Bar -->
+    <div class="add-homeowner-title">
+      <h3>Add New Homeowner</h3>
+      <button type="button" class="close-btn" id="close-modal-btn">&times;</button>
+    </div>
+
+    <!-- Form-->
+      
+    <form class="add-homeowner-form" id="add-homeowner-form">
+      
+      <!-- 1. Unit Information -->
+      <div class="form-grid-layout">
+
+      <div class="sub-section-header col-span-6">
+      <span class="form-subtitle">Unit Information</span>
+      </div>
+        <!-- First Row: Block No., Lot No., Lot Area -->
+        <div class="form-group col-span-2">
+          <label for="block-no">Block No.</label>
+          <input type="text" id="block-no" name="block-no" required placeholder="Enter Block No." />
+        </div>
+        <div class="form-group col-span-2">
+          <label for="lot-no">Lot No.</label>
+          <input type="text" id="lot-no" name="lot-no" required placeholder="Enter Lot No." />
+        </div>
+        <div class="form-group col-span-2">
+          <label for="lot-area">Lot Area</label>
+          <input type="text" id="lot-area" name="lot-area" required placeholder="Enter Lot Area" />
+        </div>
+
+        <!-- Second Row: Address -->
+        <div class="form-group col-span-6">
+          <label for="address">Address</label>
+          <input type="text" id="address" name="address" required placeholder="Enter Address" />
+        </div>
+
+       <div class="sub-section-header col-span-6">
+      <span class="form-subtitle">Representative</span>
+      </div>
+
+        <!-- Third Row: First Name, Middle Name, Last Name -->
+        <div class="form-group col-span-2">
+          <label for="first-name">First Name</label>
+          <input type="text" id="first-name" name="first-name" required placeholder="Juan" />
+        </div>
+        <div class="form-group col-span-2">
+          <label for="middle-name">Middle Name</label>
+          <input type="text" id="middle-name" name="middle-name" placeholder="Dela" />
+        </div>
+        <div class="form-group col-span-2">
+          <label for="last-name">Last Name</label>
+          <input type="text" id="last-name" name="last-name" required placeholder="Cruz" />
+        </div>
+
+        <!-- 原本 HTML 保留之其餘必填欄位 (無縫向下擴充) -->
+        
+        <div class="form-group col-span-3">
+          <label for="contact-number">Contact Number</label>
+          <input type="text" id="contact-number" name="contact-number" required placeholder="Enter Contact Number" />
+        </div>
+        <div class="form-group col-span-3">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required placeholder="Enter Email" />
+        </div>
+        <div class="form-group col-span-3">
+          <label for="ownership-status">Ownership Status</label>
+          <select id="ownership-status" name="ownership-status" required>
+            <option value="" disabled selected>Select Ownership Status</option>
+            <option value="House and Lot Owner">House and Lot Owner</option>
+            <option value="House Owner">House Owner</option>
+            <option value="Lot Owner">Lot Owner</option>
+          </select>
+        </div>
+        <div class="form-group col-span-3">
+          <label for="homeowner-since">Homeowner Since</label>
+          <input type="text" id="homeowner-since" name="homeowner-since" required placeholder="Enter Homeowner Since" />
+        </div>
+      </div>
+
+      <!-- 2. Family Members -->
+      <div class="sub-section-header">
+        <span class="form-subtitle">Family Members</span>
+        <button type="button" class="btn-sub-add" id="add-family-member">+ Add</button>
+      </div>
+
+      <div class="family-member-editor">
+        <div class="form-grid-layout family-member-inputs">
+          <div class="form-group col-span-2">
+            <label for="family-first-name">First Name</label>
+            <input type="text" id="family-first-name" name="family-first-name" placeholder="Enter First Name" />
+          </div>
+          <div class="form-group col-span-2">
+            <label for="family-middle-name">Middle Name</label>
+            <input type="text" id="family-middle-name" name="family-middle-name" placeholder="Enter Middle Name" />
+          </div>
+          <div class="form-group col-span-2">
+            <label for="family-last-name">Last Name</label>
+            <input type="text" id="family-last-name" name="family-last-name" placeholder="Enter Last Name" />
+          </div>
+          <div class="form-group col-span-2">
+            <label for="relationship">Relationship</label>
+            <input type="text" id="relationship" name="relationship" placeholder="Enter Relationship" />
+          </div>
+          <div class="form-group col-span-2">
+            <label for="family-contact">Contact Number</label>
+            <input type="text" id="family-contact" name="family-contact" placeholder="Enter Contact Number" />
+          </div>
+          <div class="form-group col-span-2">
+            <label for="family-email">Email</label>
+            <input type="email" id="family-email" name="family-email" placeholder="Enter Email" />
+          </div>
+        </div>
+
+        <div id="family-member-list" class="family-member-list"></div>
+      </div>
+
+      <!-- 3. Vehicle Information 區塊 -->
+      <div class="sub-section-header">
+        <span class="form-subtitle">Vehicle Information</span>
+        <button type="button" class="btn-sub-add" id="add-vehicle">+ Add</button>
+      </div>
+      <div class="form-grid-layout">
+        <div class="form-group col-span-2">
+          <label for="model">Model</label>
+          <input type="text" id="model" name="model" placeholder="Enter Model" />
+        </div>
+        <div class="form-group col-span-2">
+          <label for="plate-number">Plate Number</label>
+          <input type="text" id="plate-number" name="plate-number" placeholder="Enter Plate Number" />
+        </div>
+        <div class="form-group col-span-2">
+          <label for="hoa-sticker">HOA Sticker</label>
+          <input type="text" id="hoa-sticker" name="hoa-sticker" placeholder="Enter HOA Sticker" />
+        </div>
+      </div>
+      
+      <div id="vehicle-list" class="vehicle-list"></div>
+
+      <!-- 分隔線與底部按鈕列 (Cancel + Save Homeowner) -->
+      <div class="action-btn-container">
+        <button type="button" class="cancel-btn" id="cancel-btn">Cancel</button>
+        <button type="submit" class="save-btn" id="save-btn">Save Homeowner</button>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+    </div>
+
+    <script>
+      const adminToggle = document.getElementById('admin-toggle');
+      const profileModal = document.getElementById('profile-modal');
+      const logoutBtn = document.getElementById('logout-btn');
+
+      adminToggle.addEventListener('click', function (e) {
+        e.stopPropagation();
+        profileModal.classList.toggle('show');
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!profileModal.contains(e.target)) {
+          profileModal.classList.remove('show');
+        }
+      });
+
+      logoutBtn.addEventListener('click', function () {
+        if (confirm('Are you sure you want to log out?')) {
+          localStorage.clear();
+          window.location.href = '/html/html/Login.html'; // change to your login page
+        }
+      });
+    </script>
+</body>
+</html>
