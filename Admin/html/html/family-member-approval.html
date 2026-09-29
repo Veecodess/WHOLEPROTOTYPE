@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/css\css\sidebar.css">
+    <link rel="stylesheet" href="/css\css\occupant-approval.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.8.0/fonts/remixicon.css" rel="stylesheet"/>
+     <script src="/js\js\homeowner-management.js" defer></script>
+     <script src="/js\js\occupant-approval.js" defer></script>
+     </head>
+<body>
+  <!-- Left Column: tabs -->
+   <aside id="sidebar" class="sidebar">
+
+    <!-- Brand -->
+     <div class="brand">
+      <h1 class="brand-title">Casa Milan HOA</h1>
+      <p class="brand-subtitle">Management Portal</p>
+      </div>
+
+    <!-- Navigation List -->
+     <nav class="navigation-list">
+
+      
+      <div class="nav-group">
+
+        <!-- Navigation Item: Community Setting-->
+        <div class="community-setting">
+          <div class="nav-item-header">
+            <i class="ri-home-4-line"></i>
+            <button class="community-setting" id="community-setting-btn">Community Settings</button>
+          </div>
+          <div class="community-setting-dropdown" id="community-setting-dropdown">
+            <a href="/html\html\homeowner-management.html"><i class="ri-database-2-line"></i>Homeowner Management</a>
+            <a href="/html\html\property-management.html"><i class="ri-database-2-line"></i>Property Management</a>
+            <a href="/html\html\family-member-approval.html"><i class="ri-database-2-line"></i>Family Member Approval</a>
+          </div>
+        </div>
+
+        <!-- Navigation Item: Community Service-->
+        <div class="community-service">
+          <div class="nav-item-header">
+            <i class="ri-group-line"></i>
+            <button class="community-service" id="community-service-btn">Community Services</button>
+          </div>
+          <div class="community-service-dropdown" id="community-service-dropdown">
+            <a href="/html\html\dues&sOA-management.html"><i class="ri-database-2-line"></i>Dues & SOA Management</a>
+            <a href="/html\html\announcement.html"><i class="ri-database-2-line"></i>Announcement</a>
+            <a href="/html\html\inquiry&message.html"><i class="ri-database-2-line"></i>Inquiry & Message</a>
+          </div>
+        </div>
+
+        <!-- Navigation Item: Amenity Service-->
+        <div class="amenity-service">
+          <div class="nav-item-header">
+            <i class="ri-calendar-check-line"></i>
+            <button class="amenity-service" id="amenity-service-btn">Amenity Services</button>
+          </div>
+          <div class="amenity-service-dropdown" id="amenity-service-dropdown">
+            <a href="/html\html\amenity-reservation.html"><i class="ri-database-2-line"></i>Amenity Reservation</a>
+            <a href="/html\html\amenity-maintenance.html"><i class="ri-database-2-line"></i>Amenity Maintenance</a>
+            <a href="/html\html\amenity-inventory.html"><i class="ri-database-2-line"></i>Amenity Inventory</a>
+            <a href="/html\html\amenity-report.html"><i class="ri-database-2-line"></i>Amenity Report</a>
+          </div>
+        </div>
+
+        <!-- Navigation Item: Account Management-->
+        <div class="account-management">
+          <div class="nav-item-header">
+            <i class="ri-user-settings-line"></i>
+            <button class="account-management" id="account-management-btn">Account Management</button>
+          </div>
+          <div class="account-management-dropdown" id="account-management-dropdown">
+            <a href="/html\html\account-credentials-notice.html"><i class="ri-database-2-line"></i>Account Credentials Notice</a>
+            <a href="/html\html\create-account.html"><i class="ri-database-2-line"></i>Create Account</a>
+          </div>
+        </div>
+
+        <!-- Navigation Item: Archive-->
+        <div class="archive">
+          <div class="nav-item-header">
+            <i class="ri-archive-line"></i>
+            <a href="/html\html\archive.html" class="archive-link" id="archive-btn">Archive</a>
+          </div>
+        </div>
+      </div>
+
+     </nav>
+   </aside>
+  <div id="sidebar-container"></div>
+
+   <div class="main-content">
+    <header class="header">
+      <div class="header-actions">
+        <span class="home">Home</span>
+        <span class="dash">/</span>
+        <span class="nav">Family Member Approval</span>
+      </div>
+
+      <!-- User Info Top Right -->
+      <div class="user-info">
+        <span class="user">Admin</span>
+      </div>
+    </header>
+
+    <!-- Work Space -->
+    <main class="workspace">
+      <div>
+
+
+      <!-- Search and Filter Bar -->
+      <div class="filter-bar">
+
+        <!-- Filter Lot -->
+        <nav class="occupant-approval-filter">
+          <button class="pending-btn active" id="pending-btn" data-target="pending-approval-header">Pending</button>
+          <button class="history-btn" id="history-btn" data-target="history-approval-header">History</button>
+        </nav>
+
+        
+      </div>
+
+     
+
+      <!-- Table Container -->
+      <div class="table-container">
+        <table class="occupant-table">
+
+          <!-- Pending approval -->
+          <thead id="pending-approval-header" class="pending-approval-header active">
+            <tr>
+              <th><input type="checkbox" class="select-all" /></th>
+              <th>#</th>
+              <th>New occupant</th>
+              <th>Relationship</th>
+              <th>Primary Resident</th>
+              <th>Address</th>
+            </tr>
+          </thead>
+
+          <thead id="history-approval-header" class="history-approval-header">
+            <tr>
+              <th><input type="checkbox" class="select-all" /></th>
+              <th>#</th>
+              <th>New occupant</th>
+              <th>Relationship</th>
+              <th>Primary Resident</th>
+              <th>Address</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+
+          <tbody id="occupant-table-body">
+            <!-- Table rows will be dynamically generated here -->
+          </tbody>
+        </table>
+      </div>
+
+      </div>
+    </main>
+  </div>
+
+
+
+
+
+    </div>
+</body>
+</html>

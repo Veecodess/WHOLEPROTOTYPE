@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Reservation Successful | Casa Milan</title>
+	<link rel="stylesheet" href="../../css/css/style.css">
+</head>
+<body class="success-page-body">
+	<nav>
+		<a href="index.html#home" class="logo" aria-label="Casa Milan home">
+			<img src="images/logo.png" alt="Casa Milan Homeowner's Association">
+			<span>Casa Milan<br>Homeowner's Association</span>
+		</a>
+		<div class="nav-links">
+			<a href="index.html#home">Home</a>
+			<a href="index.html#about">About</a>
+			<a href="index.html#events">Announcements</a>
+			<a href="index.html#amenities">Amenities</a>
+			<a href="contacts.html">Contact</a>
+			<a href="index.html#login">Log In</a>
+		</div>
+	</nav>
+
+	<main class="success-page">
+		<section id="confirmation-card" class="confirmation-card" aria-labelledby="confirmation-title">
+			<div class="confirmation-icon" aria-hidden="true">&#10003;</div>
+			<h1 id="confirmation-title">Booking Submitted!</h1>
+			<p class="confirmation-message">Booking request submitted. Pending admin approval.<br>Check your email inbox (or spam) and SMS messages for updates.</p>
+
+			<dl class="confirmation-details">
+				<div><dt>Booking Reference</dt><dd id="booking-reference"></dd></div>
+				<div><dt>Facility</dt><dd id="booking-facility"></dd></div>
+				<div id="booking-court-row" hidden><dt>Court</dt><dd id="booking-court"></dd></div>
+				<div><dt>Date</dt><dd id="booking-date"></dd></div>
+				<div><dt>Time</dt><dd id="booking-time"></dd></div>
+				<div><dt>Rate</dt><dd id="booking-rate"></dd></div>
+				<div><dt>Total Amount</dt><dd id="booking-total"></dd></div>
+			</dl>
+
+			<p class="confirmation-note">NOTE: This is NOT an official receipt. The official receipt will be issued in person.</p>
+		</section>
+
+		<div class="success-actions">
+			<button id="save-image" class="save-image-button" type="button"><span aria-hidden="true">&#8681;</span> Save Image</button>
+			<a class="home-button" href="index.html#home">Back to Home</a>
+		</div>
+	</main>
+
+	<script>
+		const query = new URLSearchParams(window.location.search);
+		const facility = query.get('Amenity') || 'Amenity Reservation';
+		const venueType = query.get('Venue Type') || '';
+		const dateValue = query.get('Reservation Date') || '';
+		const timeValue = query.get('Reservation Time') || '';
+		const duration = Number(query.get('Duration')) || 1;
+		const total = query.get('Total Amount') || 'PHP 0';
+		const rateByAmenity = {
+			'Swimming Pool': 'PHP 250 / pax',
+			'Volleyball Court': 'PHP 1,000 / hour',
+			'Badminton Court': {
+				Taraflex: 'PHP 300 / hour',
+				Concrete: 'PHP 150 / hour',
+				'Semi-taraflex': 'PHP 250 / hour',
+				'Table tennis': 'PHP 200 / hour'
+			},
+			'Basketball Court': 'PHP 1,800 / hour',
+			'Main Hall': 'PHP 30,000'
+		};
+
+		const formatDate = (value) => value ? new Date(`${value}T00:00:00`).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'Not selected';
+		const formatTimeRange = (value) => {
+			if (!value) return 'Not selected';
+			const start = new Date(`2000-01-01T${value}`);
+			const end = new Date(start);
+			end.setHours(end.getHours() + duration);
+			const formatTime = (time) => time.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+			return `${formatTime(start)} - ${formatTime(end)}`;
+		};
+		const rate = typeof rateByAmenity[facility] === 'object' ? rateByAmenity[facility][venueType] || 'PHP 150 / hour' : rateByAmenity[facility] || 'To be confirmed';
+		const referenceDate = dateValue.replaceAll('-', '').slice(2) || '000000';
+		const reference = `CM - ${referenceDate} - ${String(Math.floor(Math.random() * 90000) + 10000)}`;
+
+		document.getElementById('booking-reference').textContent = reference;
+		document.getElementById('booking-facility').textContent = facility;
+		document.getElementById('booking-date').textContent = formatDate(dateValue);
+		document.getElementById('booking-time').textContent = formatTimeRange(timeValue);
+		document.getElementById('booking-rate').textContent = rate;
+		document.getElementById('booking-total').textContent = total;
+
+		if (venueType) {
+			document.getElementById('booking-court').textContent = `1 - ${venueType}`;
+			document.getElementById('booking-court-row').hidden = false;
+		}
+
+		document.getElementById('save-image').addEventListener('click', () => {
+			const canvas = document.createElement('canvas');
+			const context = canvas.getContext('2d');
+			canvas.width = 1200;
+			canvas.height = 980;
+			context.fillStyle = '#ffffff';
+			context.fillRect(0, 0, canvas.width, canvas.height);
+			context.fillStyle = '#99e5d8';
+			context.fillRect(300, 58, 600, 120);
+			context.strokeStyle = '#168d77';
+			context.lineWidth = 5;
+			context.beginPath();
+			context.arc(600, 118, 38, 0, Math.PI * 2);
+			context.stroke();
+			context.font = '48px Arial';
+			context.fillStyle = '#168d77';
+			context.fillText('✓', 584, 134);
+			context.fillStyle = '#263653';
+			context.textAlign = 'center';
+			context.font = 'bold 32px Arial';
+			context.fillText('Booking Submitted!', 600, 240);
+			context.font = '18px Arial';
+			context.fillText('Booking request submitted. Pending admin approval.', 600, 280);
+			context.fillText('Check your email inbox and SMS messages for updates.', 600, 308);
+			context.textAlign = 'left';
+			context.font = 'bold 16px Arial';
+			context.fillText(`Booking Reference                         ${reference}`, 170, 420);
+			context.fillText(`Facility                                             ${facility}`, 170, 475);
+			if (venueType) context.fillText(`Court                                                 1 - ${venueType}`, 170, 530);
+			context.fillText(`Date                                                  ${formatDate(dateValue)}`, 170, venueType ? 585 : 530);
+			context.fillText(`Time                                                  ${formatTimeRange(timeValue)}`, 170, venueType ? 640 : 585);
+			context.fillText(`Rate                                                  ${rate}`, 170, venueType ? 695 : 640);
+			context.fillText(`Total Amount                                      ${total}`, 170, venueType ? 750 : 695);
+			context.font = '14px Arial';
+			context.fillText('NOTE: This is NOT an official receipt. The official receipt will be issued in person.', 260, 875);
+			canvas.toBlob((blob) => {
+				const download = document.createElement('a');
+				download.href = URL.createObjectURL(blob);
+				download.download = 'casa-milan-booking.png';
+				download.click();
+				URL.revokeObjectURL(download.href);
+			}, 'image/png');
+		});
+	</script>
+</body>
+</html>

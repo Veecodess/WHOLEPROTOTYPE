@@ -1,0 +1,289 @@
+/*Sidebar*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #f6f8fa;
+  color: #333333;
+  display: flex;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/*  Sidebar */
+.sidebar {
+  width: 280px;
+  min-width: 280px;
+  background-color: #06402B; /* tab color*/
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 20px;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Brand*/
+.brand {
+  margin-bottom: 36px;
+  padding-left: 10px;
+}
+
+.brand-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.brand-subtitle {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 4px;
+}
+
+/* navigation list */
+.navigation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.nav-group {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* nav title */
+.community-setting,
+.community-service,
+.amenity-service,
+.account-management,
+.archive {
+  position: relative;
+}
+
+.nav-item-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+/* nav icon */
+.nav-item-header > i {
+  position: static;
+  margin-right: 10px;
+  font-size: 1.25rem;
+  color: #ffffff;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+/* 主按鈕樣式 */
+button.community-setting,
+button.community-service,
+button.amenity-service,
+button.account-management,
+button.archive,
+.archive-link {
+  width: 100%;
+  min-height: 44px;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: left;
+  padding: 10px 30px 10px 12px;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  line-height: 1.3;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+button.community-setting:hover,
+button.community-service:hover,
+button.amenity-service:hover,
+button.account-management:hover,
+button.archive:hover,
+.archive-link:hover,
+.archive-link:visited,
+.archive-link:active,
+.archive-link:focus {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* dropdown arrow */
+button.community-setting::after,
+button.community-service::after,
+button.amenity-service::after,
+button.account-management::after {
+  content: "";
+  position: absolute;
+  right: 12px;
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid rgba(255, 255, 255, 0.8);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.8);
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+/* 次選單 (Dropdown) 容器 */
+.community-setting-dropdown,
+.community-service-dropdown,
+.amenity-service-dropdown,
+.account-management-dropdown {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px 0 4px 44px; 
+}
+
+/* drop down content */
+.community-setting-dropdown a,
+.community-service-dropdown a,
+.amenity-service-dropdown a,
+.account-management-dropdown a {
+  position: relative;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 9px 0px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+
+
+.community-setting-dropdown a:hover,
+.community-service-dropdown a:hover,
+.amenity-service-dropdown a:hover,
+.account-management-dropdown a:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.12);
+  transform: translateX(3px);
+}
+
+/*  右側主要內容區塊 (Main Content) */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background-color: #f7f9fc;
+}
+
+/* Header*/
+.header {
+  height: 70px;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff;
+  border-bottom: 1px solid #edf0f2;
+}
+
+/* Breadcrumbs*/
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.header-actions .home {
+  color: #555555;
+  cursor: pointer;
+}
+
+.header-actions .dash {
+  color: #a0aec0;
+}
+
+.header-actions .nav {
+  color: #2d3748;
+  font-weight: 600;
+}
+
+/* top right user info */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+.user-info .user {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a202c;
+  letter-spacing: 0.3px;
+}
+
+/* default hide dropdown */
+.community-setting-dropdown,
+.community-service-dropdown,
+.amenity-service-dropdown,
+.account-management-dropdown {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  padding: 0 0 0 44px; 
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              opacity 0.25s ease, 
+              padding 0.3s ease;
+}
+
+/* dropdown open state */
+.community-setting-dropdown.open,
+.community-service-dropdown.open,
+.amenity-service-dropdown.open,
+.account-management-dropdown.open {
+  max-height: 300px; 
+  opacity: 1;
+  padding: 10px 0 6px 44px;
+}
+
+/* arrow up & down*/
+button.community-setting::after,
+button.community-service::after,
+button.amenity-service::after,
+button.account-management::after {
+  content: "";
+  position: absolute;
+  right: 12px;
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid rgba(255, 255, 255, 0.85);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.85);
+  transform: rotate(45deg); /* arrow down */
+  transition: transform 0.25s ease;
+}
+
+/* arrow up */
+button.active::after {
+  transform: rotate(-135deg);
+}
